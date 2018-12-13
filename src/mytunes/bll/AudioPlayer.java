@@ -22,54 +22,48 @@ import mytunes.be.Song;
  *
  * @author Marek
  */
-public class AudioPlayer
+public class AudioPlayer implements IPlayerModel
 {
-    private class ShuffleCollection
+    private class ShuffleCollection //Class that creates collection for random play order without repeating
     {
-        private List<Integer> collection;
-        private Iterator<Integer> iterator;
-        private boolean hasEnded;
+        private List<Integer> collection; //List that stores the indexes of the songs
+        private Iterator<Integer> iterator; //Iterator over the list
         
-        public ShuffleCollection(List source)
+        public ShuffleCollection(List source) //Fills collection with shuffled indexes
         {
             if(source != null)
             {
                 collection = new ArrayList();
-                for (int i = 0; i < source.size(); i++)
+                for (int i = 0; i < source.size(); i++) //add every number
                     collection.add(i);
-                Collections.shuffle(collection);
-                iterator = collection.iterator();
+                Collections.shuffle(collection); //shuffle them
+                iterator = collection.iterator(); //set iterator at the beginig of colleciton
             }
         }
         
         public int next()
         {
-            if(!iterator.hasNext())
+            if(!iterator.hasNext()) //if reached end than shuffle collection again and set iterator on start of collection
             {
                 Collections.shuffle(collection);
                 iterator = collection.iterator();
             }
             return iterator.next();
         }
-        
-        public boolean hasEnded()
-        {
-            return hasEnded;
-        }
-        
-        public int size()
+              
+        public int size() //returns size of collection
         {
             return collection.size();
         }
     }
     
-    private ShuffleCollection shuffleCollection;
-    private MediaPlayer mediaPlayer;
-    private List<Song> currentPlaylist;
-    private boolean shuffle;
-    private boolean repeat;
-    private int currentIndex;
-    private double volumePercentage;
+    private ShuffleCollection shuffleCollection; //Storec shuffled indexes of current playlist
+    private MediaPlayer mediaPlayer; //Media player class for current media
+    private List<Song> currentPlaylist; //Reference to chosen playlist
+    private boolean shuffle; //indicates whether shuffle is on
+    private boolean repeat; //indicates whether repeat is on
+    private int currentIndex; //indicates index of currently playing song
+    private double volumePercentage; 
     
     public AudioPlayer()
     {
@@ -88,10 +82,10 @@ public class AudioPlayer
         
     private void play(Song s)
     {
-        if(mediaPlayer != null)
+        if(mediaPlayer != null) //is is not null than stop old song
             mediaPlayer.stop();
-        mediaPlayer = new MediaPlayer(new Media(new File(s.getFilePath()).toURI().toString()));
-        mediaPlayer.onEndOfMediaProperty().setValue(new Runnable()
+        mediaPlayer = new MediaPlayer(new Media(new File(s.getFilePath()).toURI().toString())); //Create instance of media player with song from argument
+        mediaPlayer.onEndOfMediaProperty().setValue(new Runnable() //Sets event when the song ends to play next one
         {
             @Override
             public void run()
@@ -104,6 +98,7 @@ public class AudioPlayer
         currentIndex = currentPlaylist.indexOf(s);
     }
     
+    //Plays song from playlist on the given index, and stores the provided playlist as current playlist
     public void playPlaylist(List<Song> playlist,int index)
     {
         if(playlist != null && playlist.size() > 0)
@@ -129,6 +124,7 @@ public class AudioPlayer
         }
     }
     
+    //returns current time of song in percentage
     public double getTimePercentage()
     {
         Duration dur = mediaPlayer.getMedia().getDuration();
@@ -141,6 +137,7 @@ public class AudioPlayer
         return formatTime(mediaPlayer.getCurrentTime(),mediaPlayer.getMedia().getDuration());
     }
     
+    //Formats time string from current duration
     private String formatTime(Duration elapsed, Duration all)
     {
         int intElapsed = (int)Math.floor(elapsed.toSeconds());
@@ -186,19 +183,21 @@ public class AudioPlayer
         return shuffleCollection;
     }
     
+    //indicates whether the playlist has reached an end
     private boolean reachedEnd()
     {
         return shuffle ? !getShuffleCollection().iterator.hasNext() : !(currentIndex < currentPlaylist.size() - 1);
     }
     
+    //Plays next song in the palylist
     public Song playNext()
     {
         Song s = null;
-        if(!reachedEnd())
+        if(!reachedEnd()) //if hasn't reached and than just plays next song
             s = currentPlaylist.get(shuffle ? currentIndex = getShuffleCollection().next() : ++currentIndex);
-        else if(repeat)
+        else if(repeat) //if has bud is on repeat than plays next song
             s = currentPlaylist.get(shuffle ? currentIndex = getShuffleCollection().next() : 0);
-        else
+        else //if has reached end thanjust stop and return null
         { 
             if(isPlaying())
                 mediaPlayer.stop();
@@ -208,16 +207,22 @@ public class AudioPlayer
         return s;
     }
     
+    //Plays previous song
     public Song playPrev()
     {
-        if(currentIndex > 0)
+        if (currentPlaylist != null && currentPlaylist.size() > 0)
         {
-            Song s = currentPlaylist.get(--currentIndex);
-            play(s);
-            return s;
+            if (currentIndex > 0)
+            {
+                Song s = currentPlaylist.get(--currentIndex);
+                play(s);
+                return s;
+            }
+            if (isPlaying())
+            {
+                mediaPlayer.stop();
+            }
         }
-        if(isPlaying())
-            mediaPlayer.stop();
         return null;
     }
     

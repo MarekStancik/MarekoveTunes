@@ -57,6 +57,7 @@ public class LoginDialogController implements Initializable
         }
     }
 
+    //So you dont need to click login but pressing enter is enough
     @FXML
     private void txtKeyPressed(KeyEvent event)
     {

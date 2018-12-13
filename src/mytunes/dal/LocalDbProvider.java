@@ -11,16 +11,15 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author Marek
+ * @author Marek 
  */
-public class LocalDbProvider implements IConnectionProvider
+public class LocalDbProvider implements IConnectionProvider  //We wanted to create local sqlite database but we gave up because there was problem with autoincrementation not working properly
 {
     public static Connection getLocalConnection(String fileName) throws IOException 
     {

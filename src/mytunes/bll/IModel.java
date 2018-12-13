@@ -16,17 +16,30 @@ import mytunes.be.Song;
  */
 public interface IModel
 {
+
+    //Returns all songs from databse
     List<Song> getAllSongs();
+
+    //returns all playlists from database
     List<Playlist> getAllPlaylists();
+
+    //adds song to database
     void addSong(Song s);
+    
+    //adds playlist to database
     void addPlaylist(Playlist p);
+
     void deleteSong(Song s);
-    void deletePlaylist(Playlist p);    
-    ObservableList<Song> getPlaylistSongs(Playlist p);
+
+    void deletePlaylist(Playlist p);
+
     void addSongToPlaylist(Playlist p, Song s);
+
     void deleteSongFromPlaylist(Playlist p, Song s);
-    List<Song> loadAllSongs();
+
     List<Playlist> getFilteredPlaylists(String filter);
+
     List<Song> getFilteredSongs(String filter);
-    List<Song> getFilteredPlaylistSongs(Playlist p,String filter);
+
+    List<Song> getFilteredPlaylistSongs(Playlist p, String filter);
 }

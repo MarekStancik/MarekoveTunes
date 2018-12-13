@@ -10,13 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import mytunes.be.Playlist;
 import mytunes.be.Song;
 
@@ -57,7 +54,7 @@ public class PlaylistDAO
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, p.getName());
             stmt.execute();
-            ResultSet rs = con.createStatement().executeQuery("SELECT MAX(ID) as ID FROM Playlists");
+            ResultSet rs = con.createStatement().executeQuery("SELECT MAX(ID) as ID FROM Playlists"); //this is done because we need to set id of newly created playlist object
             rs.next();
             p.setID(rs.getInt("ID"));
         }

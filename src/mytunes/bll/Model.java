@@ -5,11 +5,8 @@
  */
 package mytunes.bll;
 
-import java.io.File;
 import java.util.List;
 import javafx.collections.ObservableList;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import mytunes.be.Playlist;
 import mytunes.be.Song;
 import mytunes.dal.PlaylistDAO;
@@ -23,13 +20,11 @@ public class Model implements IModel
 {
     private SongDAO songDao;
     private PlaylistDAO playlistDao;
-   // private FileSearch FS;
     
     public Model()
     {
         songDao = new SongDAO();
         playlistDao = new PlaylistDAO();
-        //FS = new FileSearch();
     }
     
     @Override
@@ -69,20 +64,8 @@ public class Model implements IModel
     }
 
     @Override
-    public ObservableList<Song> getPlaylistSongs(Playlist p) {
-       return null;// return playlistDao.getPlaylistSongs(p);
-    }
-
-    @Override
     public void addSongToPlaylist(Playlist p, Song s) {
         playlistDao.addSongToPlaylist(p, s);
-    }
-
-    @Override
-    public List<Song> loadAllSongs() {
-        
-       //return /*null;*/FS.getSongs();
-       return null;
     }
 
     @Override

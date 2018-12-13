@@ -40,13 +40,13 @@ import mytunes.be.Song;
 public class MainViewController implements Initializable
 {
     @FXML
-    private ListView<Song> listViewSongs;
+    private ListView<Song> listViewSongs; //ListVIew with all songs
     
     @FXML
-    private ListView<Playlist> listViewPlaylists;
+    private ListView<Playlist> listViewPlaylists; //ListView with all playlists
             
     @FXML
-    private ListView<Song> listViewCurrentPlaylist;
+    private ListView<Song> listViewCurrentPlaylist; //listview that Shows songs in currently chosen playlist
     
     @FXML
     private Button buttonPrevious;
@@ -72,8 +72,6 @@ public class MainViewController implements Initializable
     @FXML
     private TextField playlistSearchField;
     
-    private ControllerModel controllerModel; 
-    private Label txtPlayingName;
     @FXML
     private Rectangle rectCurrentlyPlaying;
     @FXML
@@ -81,18 +79,20 @@ public class MainViewController implements Initializable
     @FXML
     private ToggleButton btnRepeat;
     
-    private Timeline timer;
     @FXML
     private Label labelCurrentTime;
     
-    private ListView<Song> currentListview;
     @FXML
     private ToggleButton btnShuffle;
     
+    private ControllerModel controllerModel;  
+    private ListView<Song> currentListview;
+    private Timeline timer; //Timer that adapts slider
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        Stage stage = new Stage();
+        Stage stage = new Stage();          //Shows login window
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/LoginDialog.fxml"));
         try
         {
@@ -103,18 +103,20 @@ public class MainViewController implements Initializable
         }
         stage.setTitle("Login Dialog");
         stage.showAndWait();
-        controllerModel = new ControllerModel();
-        timer = new Timeline(new KeyFrame(Duration.seconds(0.3),ev -> 
+        
+        controllerModel = new ControllerModel(); 
+        
+        timer = new Timeline(new KeyFrame(Duration.seconds(0.3),ev ->  //Creating event on timer
         {
             if(controllerModel.isSongPlaying())
             {
                 if(!sliderSongtime.isPressed() && !sliderSongtime.isValueChanging())
                     sliderSongtime.setValue(controllerModel.getTimePosition());
                 labelCurrentTime.setText(controllerModel.getTimeString());
-                if(currentListview.getSelectionModel().getSelectedIndex() != controllerModel.getCurrentIndex())
+                if(currentListview.getSelectionModel().getSelectedIndex() != controllerModel.getCurrentIndex()) //if next song is playing than change the title and selection in listview
                 {
                     currentListview.getSelectionModel().select(controllerModel.getCurrentIndex());
-                    labelCurrentlyPlaing.setText(currentListview.getSelectionModel().getSelectedItem().getTitle());
+                    adaptSongLabel(currentListview.getSelectionModel().getSelectedItem());
                 }
             }            
             else 
@@ -122,6 +124,7 @@ public class MainViewController implements Initializable
         }));
         timer.setCycleCount(Animation.INDEFINITE);
         timer.play();
+        
         sliderVolume.setValue(100);
         listViewSongs.setItems(controllerModel.getSongList());
         listViewPlaylists.setItems(controllerModel.getPlaylists());
@@ -160,8 +163,8 @@ public class MainViewController implements Initializable
         {
             labelCurrentlyPlaing.setText(s.getTitle());
         }
-        else 
-            labelCurrentlyPlaing.setText("END");
+     //   else 
+       //     labelCurrentlyPlaing.setText("END");
     }
 
     @FXML
@@ -177,30 +180,36 @@ public class MainViewController implements Initializable
         adaptSongLabel(controllerModel.playNext());
     }
 
+    //On Listveiw with Playlists click
     @FXML
     private void selectPlaylist(MouseEvent event) 
     {
-        if(event.getButton().equals(MouseButton.PRIMARY))
+        if(event.getButton().equals(MouseButton.PRIMARY))  //On double click
+        {
+            controllerModel.setSelectedPlaylistIndex(listViewPlaylists.getSelectionModel().getSelectedIndex());
             if(event.getClickCount() == 2 && listViewPlaylists.getSelectionModel().getSelectedIndex() > -1)
             {
-                controllerModel.setSelectedPlaylistIndex(listViewPlaylists.getSelectionModel().getSelectedIndex());
-                if(listViewCurrentPlaylist.getItems().size() > 0)
+                if(listViewCurrentPlaylist.getItems().size() > 0)   // if list is not empty - was throwing exceptions when it was getting song of index 0
                     adaptSongLabel(controllerModel.getSelectedPlaylistSongs().get(0));
-                controllerModel.playPlaylist(0);
+                controllerModel.playPlaylist(0); //Play setted playlist from the beggining
                 currentListview = listViewCurrentPlaylist;
             }
+        }
     }
 
+    //On listview with songs in current playlist click
     @FXML
     private void selectPlaylistSong(MouseEvent event) 
     {
-        if(event.getButton().equals(MouseButton.PRIMARY))
+        if(event.getButton().equals(MouseButton.PRIMARY)) //On double click
+        {
             if(event.getClickCount() == 2 && listViewCurrentPlaylist.getSelectionModel().getSelectedIndex() > -1)
             {
-                adaptSongLabel(listViewCurrentPlaylist.getSelectionModel().getSelectedItem());
-                controllerModel.playPlaylist(listViewCurrentPlaylist.getSelectionModel().getSelectedIndex());
+                adaptSongLabel(listViewCurrentPlaylist.getSelectionModel().getSelectedItem()); //Change the currently playing label
+                controllerModel.playPlaylist(listViewCurrentPlaylist.getSelectionModel().getSelectedIndex()); //Plays selected playlist from selected index
                 currentListview = listViewCurrentPlaylist;
             }
+        }
     }
 
     @FXML
@@ -209,37 +218,39 @@ public class MainViewController implements Initializable
         controllerModel.stopSong();
     }
 
-
+    //Sets the audioPlayer so it woould repeat the playlist if it comes to the end of playlist
     @FXML
     private void pressRepeat(ActionEvent event) 
     {
         controllerModel.setRepeat(btnRepeat.isSelected());
     }
 
-
-
+    //On changing text in textBox - Searches by title of song in all songs list
     @FXML
     private void searchSongs(KeyEvent event) 
     {
         controllerModel.filterSongs(searchSongsField.getText());         
     }
-
+    
+    //On changing text in textBox - Searches by title of the song in selected playlist
     @FXML
     private void songsPlaylistSearch(KeyEvent event) 
     {
          controllerModel.filterPlaylistSongs(songsPlaylistSearchField.getText());      
     }
 
+    //On changing text in textBox - Searches by name of the playlist in all playlists
     @FXML
     private void playlistSearch(KeyEvent event) 
     {
         controllerModel.filterPlaylists(playlistSearchField.getText());        
     }
 
+    //On new playlist button click - Loads the fxml dialog for creating new playlist
     @FXML
     private void newPlaylistAction(ActionEvent event) throws IOException
     {
-        Stage s = new Stage();
+        Stage s = new Stage(); 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/PlaylistEditView.fxml"));
         s.setScene(new Scene(loader.load()));
         s.setTitle("New Playlist");
@@ -247,6 +258,7 @@ public class MainViewController implements Initializable
         s.showAndWait();
     }
 
+    //On delete playlist button click - Deletes selected playlist
     @FXML
     private void deletePlaylistAction(ActionEvent event)
     {
@@ -257,13 +269,15 @@ public class MainViewController implements Initializable
         }
     }
 
+    //On add to playlist button click - Adds song to currently selected playlist
     @FXML
     private void addToPlaylistAction(ActionEvent event)
     {
         if(listViewSongs.getSelectionModel().getSelectedIndex() > -1)
             controllerModel.addSongToPlaylist(listViewSongs.getSelectionModel().getSelectedIndex());
     }
-
+    
+    //Deletes song from currentlySelectedPlaylist
     @FXML
     private void deleteSongFromPlaylistAction(ActionEvent event)
     {
@@ -271,6 +285,7 @@ public class MainViewController implements Initializable
             controllerModel.deleteSongFromPlaylist(listViewCurrentPlaylist.getSelectionModel().getSelectedIndex());
     }
 
+    //On double click plays song from all songs list
     @FXML
     private void allSongsMouseClick(MouseEvent event)
     {
@@ -284,16 +299,8 @@ public class MainViewController implements Initializable
             }
         }
     }
-    
-    private void setCurrentSong(Song s)
-    {
-        if(s != null)
-        {
-            controllerModel.playSong(s);
-            labelCurrentlyPlaing.setText(s.getTitle());
-        }
-    }
 
+    //On button new song click -- Opens dialog for new song creation
     @FXML
     private void newSongAction(ActionEvent event) throws IOException
     {
@@ -305,6 +312,7 @@ public class MainViewController implements Initializable
         s.showAndWait();
     }
 
+    //On delete song button click - deletes song form list and database
     @FXML
     private void deleteSongAction(ActionEvent event)
     {
@@ -317,19 +325,21 @@ public class MainViewController implements Initializable
     {
     }
 
-
+    //On slider with volume action
     @FXML
     private void volumeDrag(MouseEvent event)
     {
         controllerModel.setVolume(sliderVolume.valueProperty().getValue());
     }
     
+    //on slider with time action
     @FXML
     private void timeDrag(MouseEvent event)
     {
         controllerModel.setTime(sliderSongtime.valueProperty().getValue());
     }
 
+    
     @FXML
     private void editPlaylistAction(ActionEvent event)
     {
@@ -340,6 +350,7 @@ public class MainViewController implements Initializable
     {
     }
 
+    //Sets whether playlist should play in random order
     @FXML
     private void btnShuffleAction(ActionEvent event)
     {

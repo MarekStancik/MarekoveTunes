@@ -14,6 +14,7 @@ import mytunes.be.Playlist;
 import mytunes.be.Song;
 import mytunes.bll.AudioPlayer;
 import mytunes.bll.IModel;
+import mytunes.bll.IPlayerModel;
 import mytunes.bll.Model;
 
 /**
@@ -22,16 +23,28 @@ import mytunes.bll.Model;
  */
 public class ControllerModel
 {
-    private ObservableList<Song> songList;
-    private ObservableList<Playlist> playlistList;
-    private ObservableList<Song> playlistSongsList;
-    private int selectedPlaylistIndex;
-    private IModel appModel; 
-    private AudioPlayer audioPlayer;
+    //List with all songs
+    private ObservableList<Song> songList;  
     
+    //List with all playlists
+    private ObservableList<Playlist> playlistList;
+    
+    //Currently selected playlist songs
+    private ObservableList<Song> playlistSongsList;
+    
+    //Index of currently selected playlist
+    private int selectedPlaylistIndex;
+    
+    //BusinessModel
+    private IModel appModel; 
+    
+    //AudioPlayer object
+    private IPlayerModel audioPlayer;
+    
+    //Constructor - initialize audioplayer and lists
     public ControllerModel()
     {
-        selectedPlaylistIndex = 0;
+        selectedPlaylistIndex = 0;  
         appModel = new Model();
         songList = getSongList();
         playlistList = getPlaylists();
@@ -39,11 +52,19 @@ public class ControllerModel
         audioPlayer = new AudioPlayer();
     }
     
+    /**
+     * 
+     * @return listindex of currently playing song
+     */
     public int getCurrentIndex()
     {
         return audioPlayer.getCurrentIndex();
     }
     
+    /** 
+     * 
+     * @return list of all songs in database
+     */
     public ObservableList<Song> getSongList()
     {
         if(songList == null)
@@ -54,6 +75,10 @@ public class ControllerModel
         return songList;
     }
     
+    /**
+     * 
+     * @return list of all playlists in database
+     */
     public ObservableList<Playlist> getPlaylists()
     {
         if(playlistList == null)
@@ -64,6 +89,10 @@ public class ControllerModel
         return playlistList;
     }
     
+    /**
+     * 
+     * @return list of all songs in selected playlist
+     */
     public ObservableList<Song> getSelectedPlaylistSongs()
     {
         if(playlistSongsList == null)
@@ -73,6 +102,11 @@ public class ControllerModel
         return playlistSongsList; 
     }
     
+    /**
+     * 
+     * @param playlist from which the songs will be returned
+     * @return all songs in provided playlist
+     */
     private List<Song> getSongsFromPlaylist(Playlist playlist)
     {
         List<Song> retval = new ArrayList();
@@ -91,17 +125,23 @@ public class ControllerModel
         return retval;
     }
     
+    //Sets currently selected playlist
     public void setSelectedPlaylistIndex(int playlistIndex)
     {
        selectedPlaylistIndex = playlistIndex; 
        playlistSongsList.setAll(getSongsFromPlaylist(playlistList.get(playlistIndex)));
     }
     
+    /**
+     * 
+     * @return currently selected playlist 
+     */
     public Playlist selectedPlaylist()
     {
         return playlistList.get(selectedPlaylistIndex);
     }
     
+    //Deletes currently selected playlist
     public void deletePlaylist()
     {
         playlistSongsList.clear();
@@ -111,12 +151,14 @@ public class ControllerModel
             setSelectedPlaylistIndex(selectedPlaylistIndex -1 );
     }
     
+    //Adds playlist to database and playlists list
     public void addPlaylist(Playlist p)
     {
         playlistList.add(p);
         appModel.addPlaylist(p);
     }
     
+    //Adds song to currently selected playlist
     public void addSongToPlaylist(int index)
     {
         Song song = songList.get(index);
@@ -126,6 +168,7 @@ public class ControllerModel
         selectedPlaylist().addSongId(song.getID());
     }
     
+    //Deletes song from currently selected playlist
     public void deleteSongFromPlaylist(int index)
     {
         Song song = playlistSongsList.get(index);
@@ -135,6 +178,7 @@ public class ControllerModel
         selectedPlaylist().removeSongId(song.getID());
     }
     
+    //Adds song to song list and database
     public void addSong(Song s)
     {
         if(!songList.contains(s))
@@ -142,12 +186,14 @@ public class ControllerModel
         appModel.addSong(s);
     }
     
+    //Deletes song from list and database
     public void deleteSong(Song s)
     {
         if(songList.contains(s))
             songList.remove(s);
         appModel.deleteSong(s);
     }
+    
     
     public void filterPlaylists(String filter)
     {
@@ -210,12 +256,14 @@ public class ControllerModel
     {
         audioPlayer.setTime(time);
     }
-    
+   
+    //Returns percentage of time passed on currently playing song
     public double getTimePosition()
     {
         return audioPlayer.getTimePercentage();
     }  
     
+    //Returns time string form currently playing song
     public String getTimeString()
     {
         return audioPlayer.getFormatedCurrentTime();
@@ -233,7 +281,6 @@ public class ControllerModel
     
     private IModel getModel()
     {
-        
         if(appModel == null)
             appModel = new Model();
         return appModel;

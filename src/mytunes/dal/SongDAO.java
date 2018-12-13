@@ -86,7 +86,7 @@ public class SongDAO
             pstmt.setString(4, s.getFilePath());
             pstmt.setString(5, s.getArtist());
             pstmt.execute();
-            ResultSet rs = con.createStatement().executeQuery("SELECT MAX(ID) as ID FROM Songs");
+            ResultSet rs = con.createStatement().executeQuery("SELECT MAX(ID) as ID FROM Songs"); //this is done because we need to provide id to newly created song object
             rs.next();
             s.setID(rs.getInt("ID"));
         } catch (SQLServerException ex)
@@ -96,29 +96,6 @@ public class SongDAO
         {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public Song getSong(int id)
-    {
-        Song retval= null;
-        try(Connection con = conProvider.getConnection())
-        {
-            String sql = "SELECT * FROM Songs WHERE ID = ?";
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, id); 
-            ResultSet rs = pstmt.executeQuery();
-            while(rs.next())
-            {
-                retval = songFromRs(rs);
-            }
-        } catch (SQLServerException ex)
-        {
-            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return retval;
     }
     
     public List<Song> getAllSongs()
