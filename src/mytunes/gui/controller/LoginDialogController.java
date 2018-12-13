@@ -6,6 +6,7 @@
 package mytunes.gui.controller;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,7 +33,9 @@ public class LoginDialogController implements Initializable
     @FXML
     private TextField txtUsername;
     @FXML
-    private TextField txtPassword;
+    private TextField txtDbName;
+    @FXML
+    private PasswordField txtPass;
 
     /**
      * Initializes the controller class.
@@ -40,31 +44,50 @@ public class LoginDialogController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+        Properties prop = new Properties();
+        try (FileInputStream input = new FileInputStream("DbConnection.prop"))
+        {
+            prop.load(input);
+            txtUsername.setText(prop.getProperty("UserName"));// getProperty("UserName"));
+            txtPass.setText(prop.getProperty("Pass"));
+            txtDbName.setText(prop.getProperty("DbName"));
+        } catch (IOException ex)
+        {
+            Logger.getLogger(LoginDialogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     private void txtKeyPressed(KeyEvent event)
     {
-        if(event.getCode() == KeyCode.ENTER)
+        if (event.getCode() == KeyCode.ENTER)
+        {
             btnLoginAction(null);
+        }
     }
 
     @FXML
     private void btnLoginAction(ActionEvent event)
     {
-        if(!txtUsername.getText().isEmpty() && !txtPassword.getText().isEmpty())
+        if (!txtUsername.getText().isEmpty() && !txtPass.getText().isEmpty() && !txtDbName.getText().isEmpty())
         {
             Properties prop = new Properties();
-            try(FileInputStream input = new FileInputStream("DbConnection.prop")){
-            prop.load(input);
-            }catch(IOException ex){
-               Logger.getLogger(LoginDialogController.class.getName()).log(Level.SEVERE, null, ex); 
+            try (FileInputStream input = new FileInputStream("DbConnection.prop"))
+            {
+                prop.load(input);
+                input.close();
+                prop.setProperty("UserName", txtUsername.getText());// getProperty("UserName"));
+                prop.setProperty("Pass", txtPass.getText());
+                prop.setProperty("DbName", txtDbName.getText());
+                FileOutputStream output = new FileOutputStream("DbConnection.prop");
+                prop.store(output, null);
+            } catch (IOException ex)
+            {
+                Logger.getLogger(LoginDialogController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            prop.setProperty("UserName", txtUsername.getText());// getProperty("UserName"));
-            prop.setProperty("Pass", txtPassword.getText());
             Stage st = (Stage) txtUsername.getScene().getWindow();
             st.close();
         }
     }
-    
+
 }

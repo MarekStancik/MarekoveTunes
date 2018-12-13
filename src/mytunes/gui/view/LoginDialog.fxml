@@ -2,16 +2,19 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="244.0" prefWidth="278.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="mytunes.gui.controller.LoginDialogController">
+<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="278.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="mytunes.gui.controller.LoginDialogController">
    <children>
-      <Label layoutX="47.0" layoutY="47.0" text="Username" />
-      <TextField fx:id="txtUsername" layoutX="47.0" layoutY="81.0" onKeyPressed="#txtKeyPressed" />
-      <Label layoutX="45.0" layoutY="119.0" text="Password" />
-      <TextField fx:id="txtPassword" layoutX="45.0" layoutY="153.0" onKeyPressed="#txtKeyPressed" />
-      <Button layoutX="139.0" layoutY="199.0" mnemonicParsing="false" onAction="#btnLoginAction" prefHeight="31.0" prefWidth="92.0" text="Login" />
+      <Label layoutX="47.0" layoutY="121.0" text="Username" />
+      <TextField fx:id="txtUsername" layoutX="47.0" layoutY="155.0" onKeyPressed="#txtKeyPressed" />
+      <Label layoutX="45.0" layoutY="193.0" text="Password" />
+      <Button layoutX="139.0" layoutY="273.0" mnemonicParsing="false" onAction="#btnLoginAction" prefHeight="31.0" prefWidth="92.0" text="Login" />
+      <Label layoutX="46.0" layoutY="42.0" text="Database name" />
+      <TextField fx:id="txtDbName" layoutX="46.0" layoutY="76.0" onKeyPressed="#txtKeyPressed" />
+      <PasswordField fx:id="txtPass" layoutX="46.0" layoutY="226.0" onKeyPressed="#txtKeyPressed" />
    </children>
 </AnchorPane>
