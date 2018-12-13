@@ -180,11 +180,12 @@ public class MainViewController implements Initializable
     @FXML
     private void selectPlaylist(MouseEvent event) 
     {
-        controllerModel.setSelectedPlaylistIndex(listViewPlaylists.getSelectionModel().getSelectedIndex());
         if(event.getButton().equals(MouseButton.PRIMARY))
             if(event.getClickCount() == 2 && listViewPlaylists.getSelectionModel().getSelectedIndex() > -1)
             {
-                adaptSongLabel(controllerModel.getSelectedPlaylistSongs().get(0));
+                controllerModel.setSelectedPlaylistIndex(listViewPlaylists.getSelectionModel().getSelectedIndex());
+                if(listViewCurrentPlaylist.getItems().size() > 0)
+                    adaptSongLabel(controllerModel.getSelectedPlaylistSongs().get(0));
                 controllerModel.playPlaylist(0);
                 currentListview = listViewCurrentPlaylist;
             }

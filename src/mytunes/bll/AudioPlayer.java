@@ -106,7 +106,7 @@ public class AudioPlayer
     
     public void playPlaylist(List<Song> playlist,int index)
     {
-        if(playlist != null)
+        if(playlist != null && playlist.size() > 0)
         {
             currentPlaylist = playlist;
             shuffleCollection = new ShuffleCollection(playlist);
