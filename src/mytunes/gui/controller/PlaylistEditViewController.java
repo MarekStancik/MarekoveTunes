@@ -32,6 +32,8 @@ public class PlaylistEditViewController implements Initializable {
     private TextField input;
     
     private ControllerModel controllerModel;
+    private boolean isEditing;
+    private Playlist playlist;
     /**
      * Initializes the controller class.
      */
@@ -51,9 +53,12 @@ public class PlaylistEditViewController implements Initializable {
     {
         if (!input.getText().equals(""))
         {
-            Playlist p = new Playlist();
-            p.setName(input.getText());
-            controllerModel.addPlaylist(p);
+            playlist = isEditing ? playlist : new Playlist();
+            playlist.setName(input.getText());
+            if(isEditing)
+                controllerModel.updatePlaylist(playlist);
+            else
+                controllerModel.addPlaylist(playlist);
 
             Stage st = (Stage) saveButton.getScene().getWindow();
             st.close();
@@ -63,6 +68,13 @@ public class PlaylistEditViewController implements Initializable {
     public void setControllerModel(ControllerModel model)
     {
         controllerModel = model;
+        isEditing = false;
     }
     
+    public void setControllerModelWithPlaylist(ControllerModel model,Playlist playlist)
+    {
+        controllerModel = model;
+        isEditing = true;
+        this.playlist = playlist;
+    }
 }

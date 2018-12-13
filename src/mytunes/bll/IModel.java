@@ -28,6 +28,8 @@ public interface IModel
     
     //adds playlist to database
     void addPlaylist(Playlist p);
+    
+    void updatePlaylist(Playlist p);
 
     void deleteSong(Song s);
 

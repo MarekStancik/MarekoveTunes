@@ -65,12 +65,23 @@ public class PlaylistDAO
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-            
-    public Playlist getPlaylist(String name)
+   
+    public void updatePlaylist(Playlist p)
     {
-        return null;
+        try (Connection con = conProvider.getConnection()){
+            String sql = "UPDATE Playlists SET Name = ? WHERE ID = "+ p.getID();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, p.getName());
+            stmt.execute();
+        }
+        catch(SQLServerException ex){
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(SQLException ex){
+            Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+                
     public List<Playlist> getAllPlaylists()
     {
         return getFilteredPlaylists("");

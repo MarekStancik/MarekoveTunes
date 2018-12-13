@@ -158,6 +158,11 @@ public class ControllerModel
         appModel.addPlaylist(p);
     }
     
+    public void updatePlaylist(Playlist p)
+    {
+        appModel.updatePlaylist(p);
+    }
+    
     //Adds song to currently selected playlist
     public void addSongToPlaylist(int index)
     {

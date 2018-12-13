@@ -131,16 +131,6 @@ public class MainViewController implements Initializable
         listViewCurrentPlaylist.setItems(controllerModel.getSelectedPlaylistSongs());
     }
 
-    private void editPlaylist(ActionEvent event) throws IOException 
-    {
-/*        Stage s = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/PlaylistEditView.fxml"));
-        s.setScene(new Scene(loader.load()));
-        s.setTitle("Edit Playlist");
-        PlaylistEditViewController questions = loader.<PlaylistEditViewController>getController();
-        s.show();*/
-    }
-
     private void editSong(ActionEvent event) throws IOException 
     {/*
         Stage stage = new Stage();
@@ -341,8 +331,18 @@ public class MainViewController implements Initializable
 
     
     @FXML
-    private void editPlaylistAction(ActionEvent event)
+    private void editPlaylistAction(ActionEvent event) throws IOException
     {
+        if (listViewPlaylists.getSelectionModel().getSelectedIndex() > -1)
+        {
+            Stage s = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/PlaylistEditView.fxml"));
+            s.setScene(new Scene(loader.load()));
+            s.setTitle("Edit Playlist");
+            loader.<PlaylistEditViewController>getController().setControllerModelWithPlaylist(controllerModel, listViewPlaylists.getSelectionModel().getSelectedItem());
+            s.showAndWait();
+            listViewPlaylists.refresh();
+        }
     }
 
     @FXML

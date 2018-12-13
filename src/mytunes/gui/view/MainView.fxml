@@ -54,7 +54,7 @@
       <Button layoutX="479.0" layoutY="313.0" mnemonicParsing="false" onAction="#deletePlaylistAction" text="Delete" AnchorPane.rightAnchor="16.0" />
       <Button layoutX="320.0" layoutY="638.0" mnemonicParsing="false" onAction="#deleteSongFromPlaylistAction" text="Delete" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="16.0" />
       <Button layoutX="324.0" layoutY="638.0" mnemonicParsing="false" onAction="#newSong" text="Add" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="322.0" />
-      <Button layoutX="123.0" layoutY="641.0" mnemonicParsing="false" onAction="#deleteSongAction" text="Delete" />
+      <Button layoutX="92.0" layoutY="641.0" mnemonicParsing="false" onAction="#deleteSongAction" text="Delete" />
       <Rectangle fx:id="rectCurrentlyPlaying" arcHeight="5.0" arcWidth="5.0" fill="#ffef1f" height="32.0" layoutX="16.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
       <Label fx:id="labelCurrentlyPlaing" layoutX="20.0" layoutY="21.0" prefHeight="21.0" prefWidth="271.0" textFill="#a11d0e">
          <font>
@@ -64,7 +64,6 @@
       <ToggleButton fx:id="btnRepeat" layoutX="258.0" layoutY="201.0" mnemonicParsing="false" onAction="#pressRepeat" prefHeight="4.0" prefWidth="32.0" text="R" />
       <Label fx:id="labelCurrentTime" layoutX="214.0" layoutY="21.0" prefHeight="21.0" prefWidth="80.0" text="00:00/00:00" textFill="#a11d0e" />
       <Button layoutX="390.0" layoutY="313.0" mnemonicParsing="false" onAction="#editPlaylistAction" text="Edit" />
-      <Button layoutX="70.0" layoutY="641.0" mnemonicParsing="false" onAction="#editSongAction" text="Edit" />
       <ToggleButton fx:id="btnShuffle" layoutX="222.0" layoutY="217.0" mnemonicParsing="false" onAction="#btnShuffleAction" prefHeight="24.0" prefWidth="24.0" text="S" />
    </children>
 </AnchorPane>

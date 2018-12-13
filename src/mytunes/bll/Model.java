@@ -62,6 +62,12 @@ public class Model implements IModel
     {
         playlistDao.deletePlaylist(p); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public void updatePlaylist(Playlist p)
+    {
+        playlistDao.updatePlaylist(p);
+    }
 
     @Override
     public void addSongToPlaylist(Playlist p, Song s) {
