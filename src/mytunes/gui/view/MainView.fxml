@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.controller.MainViewController">
+   <children>
+      <Separator layoutX="306.0" orientation="VERTICAL" prefHeight="680.0" prefWidth="0.0" AnchorPane.leftAnchor="306.0" AnchorPane.rightAnchor="248.0" />
+      <Button id="buttonPrevious" fx:id="buttonPrevious" layoutX="78.0" layoutY="212.0" mnemonicParsing="false" onAction="#pressPrevious" prefHeight="48.0" prefWidth="48.0" styleClass="buttonPrevious" stylesheets="@../css/MainView.css" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="216.0" />
+      <Button id="buttonPlay" fx:id="buttonPlay" layoutX="110.0" layoutY="201.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressPlay" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: D:\School\NetbeansProject\MojeTunes2\MyTunes\src\mytunes\images\buttonPlay.png;" styleClass="buttonPlay" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font name="Courier New" size="40.0" />
+         </font>
+      </Button>
+      <Button id="buttonNext" fx:id="buttonNext" layoutX="174.0" layoutY="213.0" mnemonicParsing="false" onAction="#pressNext" prefHeight="48.0" prefWidth="48.0" styleClass="buttonNext" stylesheets="@../css/MainView.css" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="216.0" />
+      <Slider fx:id="sliderChannels" layoutX="16.0" layoutY="176.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="264.0" AnchorPane.topAnchor="176.0" />
+      <Slider fx:id="sliderVolume" layoutX="15.0" layoutY="149.0" onMouseDragged="#volumeDrag" onMouseReleased="#volumeDrag" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="265.0" />
+      <Slider fx:id="sliderSongtime" layoutX="15.0" layoutY="60.0" onMouseReleased="#timeDrag" prefHeight="18.0" prefWidth="280.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="60.0" />
+      <Button id="buttonStop" fx:id="buttonStop" layoutX="16.0" layoutY="221.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressStop" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 360;" styleClass="buttonStop" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="216.0">
+         <font>
+            <Font name="Courier New" size="40.0" />
+         </font>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Button>
+      <Button id="buttonRepeatCount" fx:id="buttonRepeat" layoutX="262.0" layoutY="241.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressRepeat" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 360;" styleClass="buttonRepeatCount" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="240.0">
+         <font>
+            <Font name="Courier New" size="40.0" />
+         </font>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Button>
+      <ListView fx:id="listViewCurrentPlaylist" layoutX="322.0" layoutY="381.0" onMouseReleased="#selectPlaylistSong" prefHeight="251.0" prefWidth="220.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="16.0" />
+      <ListView fx:id="listViewSongs" layoutX="14.0" layoutY="318.0" onMouseClicked="#allSongsMouseClick" onMouseReleased="#selectPlaylistSong" prefHeight="313.0" prefWidth="280.0" AnchorPane.bottomAnchor="48.39999999999998" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="266.0" />
+      <TextField fx:id="searchSongsField" layoutX="20.0" layoutY="284.0" onKeyReleased="#searchSongs" prefHeight="32.0" prefWidth="280.0" AnchorPane.leftAnchor="16.0" />
+      <TextField fx:id="songsPlaylistSearchField" layoutX="324.0" layoutY="350.0" onKeyReleased="#songsPlaylistSearch" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="16.0" />
+      <TextField fx:id="playlistSearchField" layoutX="317.0" layoutY="6.0" onKeyReleased="#playlistSearch" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+      <ListView fx:id="listViewPlaylists" layoutX="324.0" layoutY="73.0" onMouseReleased="#selectPlaylist" prefHeight="251.0" prefWidth="222.0" AnchorPane.bottomAnchor="369.0" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="60.0" />
+      <AnchorPane layoutX="19.0" layoutY="89.0" prefHeight="56.0" prefWidth="271.0" styleClass="anchorPane2" stylesheets="@../css/MainView.css" />
+      <Button layoutX="20.0" layoutY="640.0" mnemonicParsing="false" onAction="#newSongAction" text="New" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="16.0" />
+      <Button layoutX="182.0" layoutY="640.0" mnemonicParsing="false" onAction="#addToPlaylistAction" text="Add To Playlist" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="264.0" />
+      <Button layoutX="324.0" layoutY="313.0" mnemonicParsing="false" onAction="#newPlaylistAction" text="New.." AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="322.0" />
+      <Button layoutX="479.0" layoutY="313.0" mnemonicParsing="false" onAction="#deletePlaylistAction" text="Delete" AnchorPane.rightAnchor="16.0" />
+      <Button layoutX="320.0" layoutY="638.0" mnemonicParsing="false" onAction="#deleteSongFromPlaylistAction" text="Delete" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="16.0" />
+      <Button layoutX="324.0" layoutY="638.0" mnemonicParsing="false" onAction="#newSong" text="Add" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="322.0" />
+      <Button layoutX="123.0" layoutY="641.0" mnemonicParsing="false" onAction="#deleteSongAction" text="Delete" />
+      <Rectangle fx:id="rectCurrentlyPlaying" arcHeight="5.0" arcWidth="5.0" fill="#ffef1f" height="32.0" layoutX="16.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
+      <Label fx:id="labelCurrentlyPlaing" layoutX="20.0" layoutY="21.0" prefHeight="21.0" prefWidth="271.0" textFill="#a11d0e">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ToggleButton fx:id="btnRepeat" layoutX="258.0" layoutY="201.0" mnemonicParsing="false" onAction="#pressRepeat" prefHeight="4.0" prefWidth="32.0" text="R" />
+      <Label fx:id="labelCurrentTime" layoutX="214.0" layoutY="21.0" prefHeight="21.0" prefWidth="80.0" text="00:00/00:00" textFill="#a11d0e" />
+      <Button layoutX="390.0" layoutY="313.0" mnemonicParsing="false" onAction="#editPlaylistAction" text="Edit" />
+      <Button layoutX="70.0" layoutY="641.0" mnemonicParsing="false" onAction="#editSongAction" text="Edit" />
+      <ToggleButton fx:id="btnShuffle" layoutX="222.0" layoutY="217.0" mnemonicParsing="false" onAction="#btnShuffleAction" prefHeight="24.0" prefWidth="24.0" text="S" />
+   </children>
+</AnchorPane>

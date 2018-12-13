@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS Songs(
+ID INT PRIMARY KEY,
+Title NVARCHAR(50),
+Category NVARCHAR(50),
+Duration INT,
+Path nvarchar(200),
+Artist nvarchar(50)  
+);
+
+CREATE TABLE IF NOT EXISTS Genre(
+ID INT PRIMARY KEY,
+Name varchar(50)
+);
+
+CREATE TABLE IF NOT EXISTS Playlists(
+ID INT PRIMARY KEY,
+Name varchar(50)
+);
+
+CREATE TABLE IF NOT EXISTS PlaylistsSongs(
+PlaylistID INT,
+SongID,
+FOREIGN KEY(SongID) REFERENCES Songs(ID),
+FOREIGN KEY(PlaylistID) REFERENCES Playlists(ID)
+);
+
+CREATE TABLE IF NOT EXISTS SongGenre(
+CategoryID INT,
+SongID INT,
+FOREIGN KEY(CategoryID) REFERENCES Genre(ID),
+FOREIGN KEY(SongID) REFERENCES Songs(ID)
+);

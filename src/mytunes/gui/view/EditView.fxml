@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="253.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.controller.EditViewController">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="222.0" prefWidth="382.0">
+         <children>
+            <HBox prefHeight="170.0" prefWidth="378.0">
+               <children>
+                  <VBox alignment="TOP_RIGHT" prefHeight="179.0" prefWidth="81.0">
+                     <children>
+                        <Label text="Title:">
+                           <VBox.margin>
+                              <Insets right="10.0" top="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Artist:">
+                           <VBox.margin>
+                              <Insets right="10.0" top="18.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Genre:">
+                           <VBox.margin>
+                              <Insets right="10.0" top="18.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Time:">
+                           <VBox.margin>
+                              <Insets right="10.0" top="18.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="File:">
+                           <VBox.margin>
+                              <Insets right="10.0" top="18.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="179.0" prefWidth="215.0">
+                     <children>
+                        <TextField fx:id="titleField" promptText="Custom name">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="artistField" promptText="Custom artist name">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ComboBox prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="timeField" disable="true">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="fileField" disable="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_RIGHT" prefHeight="170.0" prefWidth="87.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#chooseFile" text="Choose">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="54.0" prefWidth="359.0">
+               <children>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#pressCancel" text="Cancel">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#pressSave" text="Save">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
