@@ -12,7 +12,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import mytunes.be.Playlist;
 import mytunes.be.Song;
-import mytunes.dal.FileSearch;
 import mytunes.dal.PlaylistDAO;
 import mytunes.dal.SongDAO;
 
@@ -24,7 +23,7 @@ public class Model implements IModel
 {
     private SongDAO songDao;
     private PlaylistDAO playlistDao;
-    private FileSearch FS;
+   // private FileSearch FS;
     
     public Model()
     {

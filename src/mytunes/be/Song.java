@@ -7,7 +7,6 @@ package mytunes.be;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import mytunes.dal.SongTAG;
 
 /**
  *
