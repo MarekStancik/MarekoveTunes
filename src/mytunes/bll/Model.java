@@ -81,7 +81,8 @@ public class Model implements IModel
     @Override
     public List<Song> loadAllSongs() {
         
-        return /*null;*/FS.getSongs();
+       //return /*null;*/FS.getSongs();
+       return null;
     }
 
     @Override

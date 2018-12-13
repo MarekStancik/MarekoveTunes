@@ -8,6 +8,8 @@ package mytunes.gui.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,8 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
@@ -92,6 +92,17 @@ public class MainViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/gui/view/LoginDialog.fxml"));
+        try
+        {
+            stage.setScene(new Scene(loader.load()));
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setTitle("Login Dialog");
+        stage.showAndWait();
         controllerModel = new ControllerModel();
         timer = new Timeline(new KeyFrame(Duration.seconds(0.3),ev -> 
         {

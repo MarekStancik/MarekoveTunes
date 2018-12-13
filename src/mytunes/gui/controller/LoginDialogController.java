@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -57,13 +58,12 @@ public class LoginDialogController implements Initializable
             try(FileInputStream input = new FileInputStream("DbConnection.prop")){
             prop.load(input);
             }catch(IOException ex){
-               Logger.getLogger(ConnectionProvider.class.getName()).log(Level.SEVERE, null, ex); 
+               Logger.getLogger(LoginDialogController.class.getName()).log(Level.SEVERE, null, ex); 
             }
-            ds.setDatabaseName(prop.getProperty("DbName"));
-            ds.setUser(prop.getProperty("UserName"));
-            ds.setPassword(prop.getProperty("Pass"));
-            ds.setPortNumber(Integer.parseInt(prop.getProperty("PortNum")));
-            ds.setServerName(prop.getProperty("ServerName"));
+            prop.setProperty("UserName", txtUsername.getText());// getProperty("UserName"));
+            prop.setProperty("Pass", txtPassword.getText());
+            Stage st = (Stage) txtUsername.getScene().getWindow();
+            st.close();
         }
     }
     
