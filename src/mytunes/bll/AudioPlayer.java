@@ -57,7 +57,7 @@ public class AudioPlayer implements IPlayerModel
         }
     }
     
-    private ShuffleCollection shuffleCollection; //Storec shuffled indexes of current playlist
+    private ShuffleCollection shuffleCollection; //Stores shuffled indexes of current playlist
     private MediaPlayer mediaPlayer; //Media player class for current media
     private List<Song> currentPlaylist; //Reference to chosen playlist
     private boolean shuffle; //indicates whether shuffle is on
