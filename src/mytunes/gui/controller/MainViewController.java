@@ -27,6 +27,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -161,6 +162,7 @@ public class MainViewController implements Initializable
     private void pressPlay(ActionEvent event) 
     {
         controllerModel.pressPlay();
+        buttonPlay.getStylesheets().add(getClass().getResource("MainView.css").toExternalForm());
         
     }
 

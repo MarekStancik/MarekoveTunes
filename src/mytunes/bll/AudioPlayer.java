@@ -82,7 +82,7 @@ public class AudioPlayer implements IPlayerModel
         
     private void play(Song s)
     {
-        if(mediaPlayer != null) //is is not null than stop old song
+        if(mediaPlayer != null) //if is not null then stop old song
             mediaPlayer.stop();
         mediaPlayer = new MediaPlayer(new Media(new File(s.getFilePath()).toURI().toString())); //Create instance of media player with song from argument
         mediaPlayer.onEndOfMediaProperty().setValue(new Runnable() //Sets event when the song ends to play next one

@@ -37,6 +37,7 @@ and open the template in the editor.
     -fx-max-height: 64px;
 }
 
+
 .buttonNext {
     -fx-background-image: url(../images/buttonNext.png);
     -fx-background-radius: 10em; 
@@ -100,16 +101,16 @@ and open the template in the editor.
 .buttonRepeat {
     -fx-background-image: url(../images/buttonRepeat.png);
     -fx-background-radius: 10em; 
-    -fx-background-size: 30px 30px;
+    -fx-background-size: 40 40;
     -fx-background-position: center center;
 
-    -fx-min-width: 24px;
+    -fx-min-width: 32px;
 
-    -fx-min-height: 24px;
+    -fx-min-height: 32px;
 
-    -fx-max-width: 24px;
+    -fx-max-width: 32px;
 
-    -fx-max-height: 24px;
+    -fx-max-height: 32px;
 }
 
 .buttonRepeatCount {
@@ -149,4 +150,123 @@ and open the template in the editor.
 .anchorPane2{
     -fx-background-image: url(../images/equalizer.jpg);
     -fx-background-size:  stretch;
+}
+
+.buttonPlay:pressed {
+    -fx-background-image: url(../images/buttonPausePressed.png);
+    -fx-background-radius: 64ex; 
+    -fx-background-size: stretch;
+    -fx-background-position: center center;
+    -fx-min-width: 64px;
+
+    -fx-min-height: 64px;
+
+    -fx-max-width: 64px;
+
+    -fx-max-height: 64px;
+}
+
+.buttonNext:pressed {
+    -fx-background-image: url(../images/buttonNextPressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 40 40;
+    -fx-background-position: center center;
+
+    -fx-min-width: 32px;
+
+    -fx-min-height: 32px;
+
+    -fx-max-width: 32px;
+
+    -fx-max-height: 32px;
+}
+
+.buttonPrevious:pressed {
+    -fx-background-image: url(../images/buttonPreviousPressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 40 40;
+    -fx-background-position: center center;
+
+    -fx-min-width: 32px;
+
+    -fx-min-height: 32px;
+
+    -fx-max-width: 32px;
+
+    -fx-max-height: 32px;
+}
+
+.buttonStop:pressed{
+    -fx-background-image: url(../images/buttonStopPressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 40 40;
+    -fx-background-position: center center;
+
+    -fx-min-width: 32px;
+
+    -fx-min-height: 32px;
+
+    -fx-max-width: 32px;
+
+    -fx-max-height: 32px;
+}
+
+.buttonPause:pressed {
+    -fx-background-image: url(../images/buttonPausePressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 40 40;
+    -fx-background-position: center center;
+
+    -fx-min-width: 32px;
+
+    -fx-min-height: 32px;
+
+    -fx-max-width: 32px;
+
+    -fx-max-height: 32px;
+}
+
+.buttonRepeat:pressed {
+    -fx-background-image: url(../images/buttonRepeatPressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 40 40;
+    -fx-background-position: center center;
+
+    -fx-min-width: 32px;
+
+    -fx-min-height: 32px;
+
+    -fx-max-width: 32px;
+
+    -fx-max-height: 32px;
+}
+
+.buttonRepeatCount:pressed {
+    -fx-background-image: url(../images/buttonBlankPressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 30px 30px;
+    -fx-background-position: center center;
+
+    -fx-min-width: 24px;
+
+    -fx-min-height: 24px;
+
+    -fx-max-width: 24px;
+
+    -fx-max-height: 24px;
+}
+
+.buttonShuffle:pressed{
+    -fx-background-image: url(../images/buttonShufflePressed.png);
+    -fx-background-radius: 10em; 
+    -fx-background-size: 40 40;
+    -fx-background-position: center center;
+
+    -fx-min-width: 32px;
+
+    -fx-min-height: 32px;
+
+    -fx-max-width: 32px;
+
+    -fx-max-height: 32px;
 }

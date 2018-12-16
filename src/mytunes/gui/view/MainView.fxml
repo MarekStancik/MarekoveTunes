@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -15,25 +17,16 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.controller.MainViewController">
    <children>
       <Separator layoutX="306.0" orientation="VERTICAL" prefHeight="680.0" prefWidth="0.0" AnchorPane.leftAnchor="306.0" AnchorPane.rightAnchor="248.0" />
-      <Button id="buttonPrevious" fx:id="buttonPrevious" layoutX="78.0" layoutY="212.0" mnemonicParsing="false" onAction="#pressPrevious" prefHeight="48.0" prefWidth="48.0" styleClass="buttonPrevious" stylesheets="@../css/MainView.css" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="216.0" />
-      <Button id="buttonPlay" fx:id="buttonPlay" layoutX="110.0" layoutY="201.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressPlay" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: D:\School\NetbeansProject\MojeTunes2\MyTunes\src\mytunes\images\buttonPlay.png;" styleClass="buttonPlay" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="200.0">
+      <Button id="buttonPrevious" fx:id="buttonPrevious" layoutX="62.0" layoutY="202.0" mnemonicParsing="false" onAction="#pressPrevious" prefHeight="48.0" prefWidth="48.0" styleClass="buttonPrevious" stylesheets="@../css/MainView.css" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="202.0" />
+      <Button id="buttonPlay" fx:id="buttonPlay" layoutX="102.0" layoutY="186.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressPlay" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: D:\School\NetbeansProject\MojeTunes2\MyTunes\src\mytunes\images\buttonPlay.png;" styleClass="buttonPlay" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="186.0">
          <font>
             <Font name="Courier New" size="40.0" />
          </font>
       </Button>
-      <Button id="buttonNext" fx:id="buttonNext" layoutX="174.0" layoutY="213.0" mnemonicParsing="false" onAction="#pressNext" prefHeight="48.0" prefWidth="48.0" styleClass="buttonNext" stylesheets="@../css/MainView.css" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="216.0" />
-      <Slider fx:id="sliderChannels" layoutX="16.0" layoutY="176.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="264.0" AnchorPane.topAnchor="176.0" />
-      <Slider fx:id="sliderVolume" layoutX="15.0" layoutY="149.0" onMouseDragged="#volumeDrag" onMouseReleased="#volumeDrag" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="265.0" />
+      <Button id="buttonNext" fx:id="buttonNext" layoutX="174.0" layoutY="202.0" mnemonicParsing="false" onAction="#pressNext" prefHeight="48.0" prefWidth="48.0" styleClass="buttonNext" stylesheets="@../css/MainView.css" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="202.0" />
+      <Slider fx:id="sliderVolume" layoutX="46.0" layoutY="149.0" onMouseDragged="#volumeDrag" onMouseReleased="#volumeDrag" prefHeight="18.0" prefWidth="249.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="265.0" />
       <Slider fx:id="sliderSongtime" layoutX="15.0" layoutY="60.0" onMouseReleased="#timeDrag" prefHeight="18.0" prefWidth="280.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="60.0" />
-      <Button id="buttonStop" fx:id="buttonStop" layoutX="16.0" layoutY="221.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressStop" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 360;" styleClass="buttonStop" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="216.0">
-         <font>
-            <Font name="Courier New" size="40.0" />
-         </font>
-         <padding>
-            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-         </padding>
-      </Button>
-      <Button id="buttonRepeatCount" fx:id="buttonRepeat" layoutX="262.0" layoutY="241.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressRepeat" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 360;" styleClass="buttonRepeatCount" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="240.0">
+      <Button id="buttonStop" fx:id="buttonStop" layoutX="22.0" layoutY="202.0" maxHeight="149.0" maxWidth="50.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#pressStop" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 360;" styleClass="buttonStop" stylesheets="@../css/MainView.css" textAlignment="CENTER" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="202.0">
          <font>
             <Font name="Courier New" size="40.0" />
          </font>
@@ -61,9 +54,14 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ToggleButton fx:id="btnRepeat" layoutX="258.0" layoutY="201.0" mnemonicParsing="false" onAction="#pressRepeat" prefHeight="4.0" prefWidth="32.0" text="R" />
+      <ToggleButton fx:id="btnRepeat" layoutX="256.0" layoutY="203.0" mnemonicParsing="false" onAction="#pressRepeat" prefHeight="32.0" prefWidth="32.0" styleClass="buttonRepeat" stylesheets="@../css/MainView.css" />
       <Label fx:id="labelCurrentTime" layoutX="214.0" layoutY="21.0" prefHeight="21.0" prefWidth="80.0" text="00:00/00:00" textFill="#a11d0e" />
       <Button layoutX="390.0" layoutY="313.0" mnemonicParsing="false" onAction="#editPlaylistAction" text="Edit" />
-      <ToggleButton fx:id="btnShuffle" layoutX="222.0" layoutY="217.0" mnemonicParsing="false" onAction="#btnShuffleAction" prefHeight="24.0" prefWidth="24.0" text="S" />
+      <ToggleButton fx:id="btnShuffle" layoutX="214.0" layoutY="203.0" mnemonicParsing="false" onAction="#btnShuffleAction" prefHeight="32.0" prefWidth="32.0" styleClass="buttonShuffle" stylesheets="@../css/MainView.css" />
+      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="22.0" layoutY="149.0">
+         <image>
+            <Image url="@../images/volume.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
